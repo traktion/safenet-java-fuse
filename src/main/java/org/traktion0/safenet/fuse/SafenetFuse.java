@@ -11,7 +11,6 @@ import org.traktion0.safenet.filesystem.SafenetFileSystemProvider;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
-import java.io.IOException;
 import java.net.URI;
 import java.nio.file.FileSystem;
 import java.nio.file.Path;
@@ -59,7 +58,7 @@ public class SafenetFuse {
         Path mountPoint = Paths.get("/home/paul/tmp/safemount/");
         SafenetFileSystemProvider provider = new SafenetFileSystemProvider();
         try (FileSystem fileSystem = provider.newFileSystem(URI.create("safe://localhost/"), env)) {
-            JavaFS.mount(fileSystem, mountPoint, true, true);
+            JavaFS.mount(fileSystem, mountPoint, false, true);
             Thread.sleep(Long.MAX_VALUE);
         } catch (Exception e) {
             System.err.println(e.getMessage());

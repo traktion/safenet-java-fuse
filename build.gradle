@@ -24,7 +24,7 @@ repositories {
 dependencies {
     // The production code uses the SLF4J logging API at compile time
     compile 'org.slf4j:slf4j-api:1.7.13'
-    compile 'com.github.traktion0:safenet-java-file-system-provider:3722f88a8d7728d052749e8ec3d35f64e6352baf'
+    compile 'com.github.traktion0:safenet-java-file-system-provider:3d9ac94f3d9000842ec59e52d018da54d625e83a'
     compile 'com.github.puniverse:javafs:ed62bcb24ff06332e0c692bb10fb34f455e441c2'
 
     // Declare the dependency for your favourite test framework you want to use in your tests.
