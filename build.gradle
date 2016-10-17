@@ -11,6 +11,21 @@
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 
+version = '0.0.1'
+
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Safenet FUSE mount tool',
+                'Implementation-Version': '0.0.1',
+                'Main-Class': 'org.traktion0.safenet.fuse.SafenetFuse'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
+}
+
 // In this section you declare where to find the dependencies of your project
 repositories {
     // Use 'jcenter' for resolving your dependencies.

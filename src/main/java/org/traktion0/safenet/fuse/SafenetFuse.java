@@ -35,6 +35,9 @@ public class SafenetFuse {
 
     public static void main(String args[]) {
 
+        // args[0] source URL - "safe://localhost/"
+        // args[1] mount point - "/home/paul/tmp/safemount/"
+
         String[] permissions = {"SAFE_DRIVE_ACCESS"};
         auth = new Auth(
                 new App(
@@ -55,9 +58,9 @@ public class SafenetFuse {
         SafenetFactory safenetFactory = SafenetFactory.getInstance(webTarget, auth, "drive");
         env.put("SafenetFactory", safenetFactory);
 
-        Path mountPoint = Paths.get("/home/paul/tmp/safemount/");
+        Path mountPoint = Paths.get(args[1]);
         SafenetFileSystemProvider provider = new SafenetFileSystemProvider();
-        try (FileSystem fileSystem = provider.newFileSystem(URI.create("safe://localhost/"), env)) {
+        try (FileSystem fileSystem = provider.newFileSystem(URI.create(args[0]), env)) {
             JavaFS.mount(fileSystem, mountPoint, false, true);
             Thread.sleep(Long.MAX_VALUE);
         } catch (Exception e) {
